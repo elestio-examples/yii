@@ -7,6 +7,8 @@ services:
       - ./basic/:/app:delegated
     ports:
       - "172.17.0.1:8201:80"
+    depends_on:
+      - mysql
 
   mysql:
     image: elestio/mysql:8.0
