@@ -1,0 +1,36 @@
+version: "2.2"
+services:
+  php-nginx-min:
+    build:
+      dockerfile: Dockerfile-${DOCKERFILE_FLAVOUR}
+      context: "php"
+      target: nginx-min
+      args:
+        - PHP_BASE_IMAGE_VERSION
+        - X_LEGACY_GD_LIB
+        - PECL_XDEBUG_INSTALL_SUFFIX
+        - PECL_MONGODB_INSTALL_SUFFIX
+    image: yii:latest-nginx-min
+    environment:
+      # - GITHUB_API_TOKEN=${GITHUB_API_TOKEN}
+      - PHP_ENABLE_XDEBUG=0
+      - TEST_RUNTIME_PATH=/tmp/runtime
+    volumes:
+      - ./tests:/tests:delegated
+      # Framework testing
+      - ./_host-volumes/yii2:/yii2:delegated
+      # Application testing
+      - ./_host-volumes/app:/app:delegated
+      # Composer cache
+      - ~/.composer-docker/cache:/root/.composer/cache:delegated
+    ports:
+      - "172.17.0.1:8201:80"
+
+  php-nginx-dev:
+    extends:
+      service: php-min
+    build:
+      target: nginx-dev
+    image: yii:latest-nginx
+    ports:
+      - "172.17.0.1:8202:80"
