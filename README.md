@@ -31,16 +31,22 @@ This repository includes a default MySQL database in the stack, seamlessly conne
 
 ## Modifying Database Configuration
 
-Navigate to the `basic > config > db.php` file in your Yii project to update the database configuration with your current credentials.
+To customize your database configuration, follow these steps within your CI/CD project on `elestio`:
 
-    return [
+1.  Navigate to the Tools tab and click on the `VS Code` button.
+
+2.  In the opened Visual Studio Code environment, locate the `basic > config > db.php` file within your Yii project.
+
+3.  Update the database configuration with your specific credentials. Locate the following section in the file:
+
+        return [
         'class' => 'yii\db\Connection',
         'dsn' => 'mysql:host=your_host;port=your_port;dbname=your_database',
         'username' => 'your_username',
         'password' => 'your_password',
         'charset' => 'utf8',
-    ];
+        ];
 
-Replace the placeholders (`your_host`, `your_port`, `your_database`, `your_username`, and `your_password`) with your specific database details.
+4.  Replace the placeholders (`your_host`, `your_port`, `your_database`, `your_username`, and `your_password`) with your specific database details.
 
 Note: If your database is hosted on a specific port, ensure to include the `port` in the dsn parameter.
