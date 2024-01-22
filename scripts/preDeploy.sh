@@ -1,2 +1,2 @@
 mkdir -p ./temp
-cp ./basic/config ./temp/config
+cp -R ./basic/config ./temp/config

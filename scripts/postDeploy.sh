@@ -1,7 +1,7 @@
 rm -rf ./basic/config
-cp ./temp/config ./basic/config
+cp -R ./temp/config ./basic/config
 
-rm -rf ./temp/config
+rm -rf ./temp
 
 docker-compose down;
 
